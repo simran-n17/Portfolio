@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0f3057;
+            --secondary: #00587a;
+            --accent: #008891;
+            --light: #e7e7de;
+            --highlight: #e67e22;
+        }
+        
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0e0e0e;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            height: 12px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            padding: 8px 20px;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        nav a:hover {
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent);
+            z-index: -1;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::before {
+            width: 100%;
+        }
+        
+        .social-links {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--highlight);
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 40px;
+        }
+        
+        .home-section {
+            display: flex;
+            align-items: center;
+            background-color: rgb(9, 9, 9);
+            border-bottom: 1px solid #eee;
+            min-height: 400px;
+        }
+        
+        .profile-picture {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            overflow: hidden;
+            margin-right: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f3f3f3 0%, #e6e6e6 100%);
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .intro-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 30px;
+        }
+        
+        .about-section {
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .about-box {
+            flex: 1;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+        
+        .about-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .about-box p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .projects-section {
+            background-color: rgb(12, 12, 12);
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .project-card {
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            border: 1px solid #eee;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+        }
+        
+        .project-card h3 {
+            color: var(--primary);
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .project-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f3f3f3 100%);
+            padding: 60px 40px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .contact-form {
+            flex: 2;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 136, 145, 0.1);
+        }
+        
+        .contact-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--highlight);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+        
+        /* Skills in About section */
+        .skill-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Pulsing effect for send button */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 136, 145, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 136, 145, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 136, 145, 0);
+            }
+        }
+        
+        .btn-send {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header></header>
+        
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact Me</a>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank" class="social-icon">in</a>
+                <a href="https://github.com/simran-n17" target="_blank" class="social-icon">git</a>
+                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank" class="social-icon">LC</a>
+                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank" class="social-icon">Resume</a>
+            </div>
+        </nav>
+        
+        <section id="home" class="home-section">
+            <div class="profile-picture">
+                <img src="Profile-img.jpEg" alt="ProgileImg" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="intro-text">
+                <h2>Welcome to My Portfolio</h2>
+                <p>A prefinal year student passionate about technology, ready to explore real-world challenges and contribute to innovative solutions. I combine creativity with technical expertise to build meaningful projects.</p>
+            </div>
+        </section>
+        
+        <section id="about" class="about-section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-box">
+                    <h3>Skills & Expertise</h3>
+                    <div class="skill-name">
+                        <span>Web Development</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    
+                    <div class="skill-name">
+                        <span>Backend Development</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                    
+                    <div class="skill-name">
+                        <span>Docker & DevOps</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                    
+                    <div class="skill-name">
+                        <span>Data Structures</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="about-box">
+                    <h3>Education & Experience</h3>
+                    <p>I'm currently pursuing my B.Tech in Computer Science from a prestigious university. With a strong academic background and hands-on project experience, I've developed a deep understanding of software development principles.</p>
+                    <p>I'm passionate about solving real-world problems and have participated in various hackathons and coding competitions. My goal is to create technology that makes a positive impact on people's lives.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="projects-section">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Docker Projects</h3>
+                    <p>Container orchestration and deployment solutions</p>
+                    <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>File Compression Application</h3>
+                    <p>Efficient algorithms for data compression</p>
+                    <a href="https://github.com/simran-n17/TERO" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Agriculture Website</h3>
+                    <p>Digital platform for modern farming solutions</p>
+                    <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Calculator</h3>
+                    <p>Advanced calculation tool with scientific functions</p>
+                    <a href="https://github.com/simran-n17/CODSOFT/tree/main/Calculator" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Weather App</h3>
+                    <p>Real-time weather updates with forecast analysis</p>
+                    <a href="https://github.com/simran-n17/Weather-App" target="_blank" class="social-icon">git</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <div class="contact-form">
+                <h2 class="section-title" style="text-align: left; margin-top: 0;">Get In Touch</h2>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-control" placeholder="What is this regarding?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" placeholder="Type your message here..."></textarea>
+                </div>
+                <button class="btn btn-send">Send Message</button>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out to me through any of the following methods.</p>
+                </div>
+                <a href="mailto:simrannegi1537@gmail.com" class="btn btn-icon btn-outline">
+                    ✉️ Mail Me
+                </a>
+                
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 My Portfolio | Designed with passion</p>
+        </footer>
+    </div>
+</body>
+</html>
