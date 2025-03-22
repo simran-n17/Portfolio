@@ -6,7 +6,7 @@
     <title>My Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
             --primary: #0f3057;
             --secondary: #00587a;
@@ -14,12 +14,12 @@
             --light: #e7e7de;
             --highlight: #e67e22;
         }
-        
+
         * {
             box-sizing: border-box;
             transition: all 0.3s ease;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -28,7 +28,7 @@
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -37,20 +37,78 @@
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
             background-color: white;
         }
-        
+
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             height: 12px;
         }
-        
+
         nav {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
             position: relative;
         }
-        
+
+        #nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        #hamburger-icon {
+            display: none; /* Hidden by default */
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #hamburger-menu {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 60px; /* Adjust based on your header height */
+            right: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #hamburger-menu a {
+            text-decoration: none;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        #hamburger-menu a:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hamburger-icon {
+                display: block; /* Show hamburger icon on smaller screens */
+            }
+
+            #nav-links, .social-links {
+                display: none; /* Hide regular links on smaller screens */
+            }
+
+            #hamburger-menu.active {
+                display: flex; /* Show hamburger menu when active */
+            }
+        }
+
         nav a {
             text-decoration: none;
             color: var(--primary);
@@ -62,12 +120,12 @@
             overflow: hidden;
             z-index: 1;
         }
-        
+
         nav a:hover {
             color: white;
             border-color: var(--accent);
         }
-        
+
         nav a::before {
             content: '';
             position: absolute;
@@ -79,41 +137,38 @@
             z-index: -1;
             transition: width 0.3s ease;
         }
-        
+
         nav a:hover::before {
             width: 100%;
         }
-        
-        .social-links {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            display: flex;
-            gap: 15px;
-        }
-        
+
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: auto; /* Adjust width to fit content */
+            height: 30px;
             background-color: var(--primary);
             color: white;
-            border-radius: 0%;
+            border-radius: 20px; /* Oval shape */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 0.5rem; /* Larger font size */
             cursor: pointer;
+            padding: 6px 15px; /* Padding for oval shape */
+            text-decoration: none; /* Remove underline */
+            border: 2px solid transparent; /* Add border for hover effect */
+            transition: all 0.3s ease; /* Smooth transition */
         }
-        
+
         .social-icon:hover {
             background-color: var(--highlight);
             transform: translateY(-3px);
+            border-color: var(--accent); /* Add border color on hover */
         }
-        
+
         section {
             padding: 40px;
         }
-        
+
         .home-section {
             display: flex;
             align-items: center;
@@ -121,7 +176,7 @@
             border-bottom: 1px solid #eee;
             min-height: 400px;
         }
-        
+
         .profile-picture {
             width: 250px;
             height: 250px;
@@ -138,11 +193,11 @@
             font-size: 16px;
             font-weight: 500;
         }
-        
+
         .intro-text {
             flex: 1;
         }
-        
+
         .intro-text h2 {
             font-size: 2.5rem;
             margin-bottom: 10px;
@@ -150,7 +205,7 @@
             position: relative;
             display: inline-block;
         }
-        
+
         .intro-text h2::after {
             content: '';
             position: absolute;
@@ -161,18 +216,18 @@
             background: var(--accent);
             border-radius: 2px;
         }
-        
+
         .intro-text p {
             font-size: 1.2rem;
             color: #666;
             margin-top: 30px;
         }
-        
+
         .about-section {
             background-color: #0a0a0a;
             border-bottom: 1px solid #eee;
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 40px;
@@ -180,7 +235,7 @@
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -192,12 +247,12 @@
             background: var(--accent);
             border-radius: 2px;
         }
-        
+
         .about-content {
             display: flex;
             gap: 30px;
         }
-        
+
         .about-box {
             flex: 1;
             border-radius: 10px;
@@ -208,7 +263,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .about-box::before {
             content: '';
             position: absolute;
@@ -218,33 +273,99 @@
             height: 100%;
             background-color: var(--accent);
         }
-        
+
         .about-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .about-box h3 {
             margin-top: 0;
             color: var(--primary);
         }
-        
+
         .about-box p {
             color: #666;
             line-height: 1.7;
         }
-        
+
+        /* Certifications Section */
+        .certifications-box {
+            width: 60%; /* Smaller width */
+            margin: 20px auto; /* Center the box */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center; /* Center text */
+            position: relative; /* Required for the ::before pseudo-element */
+            overflow: hidden; /* Ensures the blue line doesn't overflow */
+        }
+
+        .certifications-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px; /* Width of the blue accent line */
+            height: 100%; /* Full height of the box */
+            background-color: var(--accent); /* Blue accent color */
+        }
+
+        .certifications-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        #certifications-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #certifications-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 1rem;
+            text-align: left; /* Align text to the left */
+        }
+
+        #certifications-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hidden-certification {
+            display: none;
+        }
+
+        #view-all-btn, #view-less-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        #view-all-btn:hover, #view-less-btn:hover {
+            background-color: var(--highlight);
+        }
+
         .projects-section {
             background-color: rgb(12, 12, 12);
         }
-        
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
-        
+
         .project-card {
             border-radius: 10px;
             padding: 25px;
@@ -261,12 +382,12 @@
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .project-card::before {
             content: '';
             position: absolute;
@@ -276,80 +397,40 @@
             height: 5px;
             background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
         }
-        
+
         .project-card h3 {
             color: var(--primary);
             margin: 0 0 10px;
             font-size: 1.2rem;
         }
-        
+
         .project-card p {
             color: #666;
             font-size: 0.9rem;
             margin: 0;
         }
-        
+
+        /* Updated Contact Section */
         .contact-section {
             background: linear-gradient(135deg, #f9f9f9 0%, #f3f3f3 100%);
             padding: 60px 40px;
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
+            text-align: center;
         }
-        
-        .contact-form {
-            flex: 2;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 136, 145, 0.1);
-        }
-        
+
         .contact-info {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            margin: 0 auto;
+            max-width: 600px;
         }
-        
+
         .contact-card {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
         }
-        
+
         .contact-card h3 {
             color: var(--primary);
             margin-top: 0;
@@ -357,12 +438,12 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .contact-card p {
             color: #666;
             margin-bottom: 0;
         }
-        
+
         .btn {
             padding: 12px 25px;
             background-color: var(--accent);
@@ -378,33 +459,33 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn:hover {
             background-color: var(--highlight);
             transform: translateY(-3px);
             box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
         }
-        
+
         .btn-outline {
             background-color: transparent;
             color: var(--accent);
             border: 2px solid var(--accent);
         }
-        
+
         .btn-outline:hover {
             background-color: var(--accent);
             color: white;
         }
-        
+
         .btn-icon {
             display: flex;
             align-items: center;
             gap: 8px;
             justify-content: center;
-            width: 100%;
-            margin-bottom: 10px;
+            max-width: 200px;
+            margin: 20px auto;
         }
-        
+
         footer {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
@@ -412,11 +493,11 @@
             padding: 20px 0;
             font-size: 0.9rem;
         }
-        
+
         footer p {
             margin: 0;
         }
-        
+
         /* Skills in About section */
         .skill-bar {
             height: 10px;
@@ -426,7 +507,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .skill-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
@@ -435,7 +516,7 @@
             left: 0;
             top: 0;
         }
-        
+
         .skill-name {
             display: flex;
             justify-content: space-between;
@@ -443,7 +524,7 @@
             font-size: 0.9rem;
             font-weight: 500;
         }
-        
+
         /* Pulsing effect for send button */
         @keyframes pulse {
             0% {
@@ -456,10 +537,6 @@
                 box-shadow: 0 0 0 0 rgba(0, 136, 145, 0);
             }
         }
-        
-        .btn-send {
-            animation: pulse 2s infinite;
-        }
     </style>
 </head>
 <body>
@@ -467,16 +544,35 @@
         <header></header>
         
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact Me</a>
-            
+            <!-- Hamburger Icon -->
+            <div id="hamburger-icon" onclick="toggleMenu()">☰</div>
+
+            <!-- Navigation Links -->
+            <div id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact Me</a>
+            </div>
+
+            <!-- Social Links -->
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank" class="social-icon">in</a>
-                <a href="https://github.com/simran-n17" target="_blank" class="social-icon">git</a>
-                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank" class="social-icon">LC</a>
-                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank" class="social-icon">Resume</a>
+                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank" class="social-icon">LinkedIn</a>
+                <a href="https://github.com/simran-n17" target="_blank" class="social-icon">GitHub</a>
+                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank" class="social-icon">leetcode</a>
+                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank" class="social-icon">Download Resume</a>
+            </div>
+
+            <!-- Hamburger Menu (Hidden by Default) -->
+            <div id="hamburger-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact Me</a>
+                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/simran-n17" target="_blank">GitHub</a>
+                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank">LeetCode</a>
+                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank">Resume</a>
             </div>
         </nav>
         
@@ -493,18 +589,27 @@
         <section id="about" class="about-section">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
+                <!-- Skills & Expertise Box -->
                 <div class="about-box">
                     <h3>Skills & Expertise</h3>
                     <div class="skill-name">
-                        <span>Web Development</span>
-                        <span>90%</span>
+                        <span>AWS</span>
+                        <span>65%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-fill" style="width: 90%"></div>
+                        <div class="skill-fill" style="width: 65%"></div>
+                    </div>
+        
+                    <div class="skill-name">
+                        <span>Web Development</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 65%"></div>
                     </div>
                     
                     <div class="skill-name">
-                        <span>Backend Development</span>
+                        <span>Docker</span>
                         <span>85%</span>
                     </div>
                     <div class="skill-bar">
@@ -512,26 +617,57 @@
                     </div>
                     
                     <div class="skill-name">
-                        <span>Docker & DevOps</span>
+                        <span>DevOps</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 70%"></div>
+                    </div>
+        
+                    <div class="skill-name">
+                        <span>MySQL</span>
                         <span>80%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-fill" style="width: 80%"></div>
                     </div>
-                    
+        
                     <div class="skill-name">
                         <span>Data Structures</span>
-                        <span>88%</span>
+                        <span>75%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-fill" style="width: 88%"></div>
+                        <div class="skill-fill" style="width: 75%"></div>
                     </div>
                 </div>
+        
+                <!-- Education & Experience Box -->
                 <div class="about-box">
                     <h3>Education & Experience</h3>
-                    <p>I'm currently pursuing my B.Tech in Computer Science from a prestigious university. With a strong academic background and hands-on project experience, I've developed a deep understanding of software development principles.</p>
-                    <p>I'm passionate about solving real-world problems and have participated in various hackathons and coding competitions. My goal is to create technology that makes a positive impact on people's lives.</p>
+                    <p>Hi, I'm Simran Negi</p>
+                    <p>Currently pursuing my Bachelor's in Computer Science and Engineering specializing in Cloud Computing & Virtualization(CCVT) from UPES, Dehradun where I'm maintaining a CGPA of 8.13/10.0. </p>
+                    <p>Passionate about solving real-world problems and have participated in various hackathons and coding competitions.</p>
+                    <p>Enthusiastic about cloud computing, specializing in AWS, Docker, Kubernetes, and AI-driven automation, while actively exploring AI-driven cloud innovations, serverless computing, and container orchestration to drive digital transformation.</p>
                 </div>
+            </div>
+        
+            <!-- Certifications Section -->
+            <div class="certifications-box">
+                <h3>Certifications</h3>
+                <ul id="certifications-list">
+                    <li>✅ AWS Cloud Quest- Cloud Practitioner</li>
+                    <li>✅ AWS-Academy Graduate- AWS Academy Cloud Security Foundations</li>
+                    <li>✅ Responsive Web Design Certification(freeCodeCamp)</li>
+                    <li>✅ JPMorgan Chase & Co.-Excel Kills Job Simulation(Forage)</li>
+                    <li>✅ AWS Cloud Front(Coursera)</li>
+                    <!-- Hidden Certifications -->
+                    <li class="hidden-certification">✅ AWS-Academy Graduate- AWS Academy Cloud Web Application Builder</li>
+                    <li class="hidden-certification">✅ AWS Cloud Practitioner Essentials</li> 
+                    <li class="hidden-certification">✅ AWS-Academy Graduate- AWS Academy Cloud Computing Architecture</li>
+                    <li class="hidden-certification">✅ Java Featurs(Infosys Springboard)</li>
+                </ul>
+                <button id="view-all-btn" class="btn btn-outline">View All</button>
+                <button id="view-less-btn" class="btn btn-outline" style="display: none;">View Less</button>
             </div>
         </section>
         
@@ -540,68 +676,85 @@
             <div class="project-grid">
                 <div class="project-card">
                     <h3>Docker Projects</h3>
-                    <p>Container orchestration and deployment solutions</p>
-                    <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
+                    <p>Container orchestration and deployment</p>
+                    <a href="https://github.com/simran-n17/Docker-Projects" target="_blank" class="social-icon">git</a>
                 </div>
                 <div class="project-card">
                     <h3>File Compression Application</h3>
-                    <p>Efficient algorithms for data compression</p>
+                    <p>Efficient algorithm for data compression</p>
                     <a href="https://github.com/simran-n17/TERO" target="_blank" class="social-icon">git</a>
                 </div>
                 <div class="project-card">
                     <h3>Agriculture Website</h3>
-                    <p>Digital platform for modern farming solutions</p>
+                    <p>Digital platform for modern farming</p>
                     <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
                 </div>
                 <div class="project-card">
+                    <h3>AWS Three Tier Architecture</h3>
+                    <p>Three Tier Architecture Deployment</p>
+                    <a href="https://github.com/simran-n17/AWS--Three-Tier-Architecture-Deployment" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
                     <h3>Calculator</h3>
-                    <p>Advanced calculation tool with scientific functions</p>
+                    <p>Advanced calculation tool </p>
                     <a href="https://github.com/simran-n17/CODSOFT/tree/main/Calculator" target="_blank" class="social-icon">git</a>
                 </div>
                 <div class="project-card">
                     <h3>Weather App</h3>
-                    <p>Real-time weather updates with forecast analysis</p>
+                    <p>Real-time weather updates</p>
                     <a href="https://github.com/simran-n17/Weather-App" target="_blank" class="social-icon">git</a>
                 </div>
             </div>
         </section>
         
         <section id="contact" class="contact-section">
-            <div class="contact-form">
-                <h2 class="section-title" style="text-align: left; margin-top: 0;">Get In Touch</h2>
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" class="form-control" placeholder="What is this regarding?">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" class="form-control" placeholder="Type your message here..."></textarea>
-                </div>
-                <button class="btn btn-send">Send Message</button>
-            </div>
-            <div class="contact-info">
+            <div class="contact-info" style="flex: 1; margin: 0 auto; text-align: center; max-width: 600px;">
                 <div class="contact-card">
-                    <h3>Contact Information</h3>
-                    <p>Feel free to reach out to me through any of the following methods.</p>
+                    <h2 class="section-title" style="text-align: center;">Get In Touch</h2>
+                    <p>Feel free to reach out to me through email. I'm always open to discussing new projects, opportunities, or just having a chat!</p>
                 </div>
-                <a href="mailto:simrannegi1537@gmail.com" class="btn btn-icon btn-outline">
-                    ✉️ Mail Me
-                </a>
-                
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=simrannegi1537@gmail.com&su=Portfolio Contact" target="_blank" class="btn btn-icon btn-outline" style="max-width: 200px; margin: 20px auto;">
+                    ✉️ Mail Me</a>
             </div>
         </section>
         
         <footer>
-            <p>© 2025 My Portfolio | Designed with passion</p>
+            <p>© 2025 My Portfolio | Designed with passion-SIMRAN</p>
         </footer>
     </div>
+    <script>
+        // Toggle Hamburger Menu
+        function toggleMenu() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            hamburgerMenu.classList.toggle('active');
+        }
+
+        // Toggle Certifications
+        const viewAllBtn = document.getElementById('view-all-btn');
+        const viewLessBtn = document.getElementById('view-less-btn');
+        const hiddenCertifications = document.querySelectorAll('.hidden-certification');
+    
+        viewAllBtn.addEventListener('click', function() {
+            // Show all hidden certifications
+            hiddenCertifications.forEach(cert => {
+                cert.style.display = 'block';
+            });
+    
+            // Hide "View All" button and show "View Less" button
+            viewAllBtn.style.display = 'none';
+            viewLessBtn.style.display = 'inline-block';
+        });
+    
+        viewLessBtn.addEventListener('click', function() {
+            // Hide all hidden certifications
+            hiddenCertifications.forEach(cert => {
+                cert.style.display = 'none';
+            });
+    
+            // Hide "View Less" button and show "View All" button
+            viewLessBtn.style.display = 'none';
+            viewAllBtn.style.display = 'inline-block';
+        });
+    </script>
 </body>
 </html>
