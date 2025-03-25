@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simran Negi's Portfolio - A Computer Science student specializing in Cloud Computing & Virtualization, passionate about AWS, Docker, Kubernetes, and AI-driven automation.">
+    <meta name="keywords" content="Simran Negi, Portfolio, Cloud Computing, AWS, Docker, Kubernetes, AI-driven automation, UPES">
+    <meta name="author" content="Simran Negi">
+    <title>Simran Negi - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #0f3057;
+            --secondary: #00587a;
+            --accent: #008891;
+            --light: #e7e7de;
+            --highlight: #e67e22;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #0e0e0e, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            background-color: rgb(243, 216, 216);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            height: 12px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        #nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #hamburger-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: rgb(249, 232, 232);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #hamburger-menu a {
+            text-decoration: none;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        #hamburger-menu a:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            #hamburger-icon {
+                display: block;
+            }
+
+            #nav-links, .social-links {
+                display: none;
+            }
+
+            #hamburger-menu.active {
+                display: flex;
+            }
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            padding: 8px 20px;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        nav a:hover {
+            color: white;
+            border-color: var(--accent);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent);
+            z-index: -1;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--highlight);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        .home-section {
+            display: flex;
+            align-items: center;
+            background-color: rgb(9, 9, 9);
+            border-bottom: 1px solid #eee;
+            min-height: 400px;
+        }
+
+        .profile-picture {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            overflow: hidden;
+            margin-right: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f3f3f3 0%, #e6e6e6 100%);
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .about-section {
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .about-box {
+            flex: 1;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: rgb(243, 216, 216);
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .about-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+
+        .about-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .about-box p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .certifications-box {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(243, 216, 216);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certifications-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+
+        .certifications-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        #certifications-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #certifications-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        #certifications-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hidden-certification {
+            display: none;
+        }
+
+        #view-all-btn, #view-less-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        #view-all-btn:hover, #view-less-btn:hover {
+            background-color: var(--highlight);
+        }
+
+        .projects-section {
+            background-color: rgb(12, 12, 12);
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: rgb(243, 216, 216);
+            border: 1px solid #eee;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .contact-section {
+            background-color: rgb(12, 12, 12);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .contact-card {
+            background-color: rgb(243, 216, 216);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--highlight);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 136, 145, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 136, 145, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 136, 145, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header></header>
+        
+        <nav>
+            <div id="hamburger-icon" onclick="toggleMenu()">☰</div>
+        
+            <div id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact Me</a>
+            </div>
+        
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/simran-n17" target="_blank" class="social-icon" title="GitHub" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank" class="social-icon" title="LeetCode" aria-label="LeetCode">
+                    <i class="fas fa-code"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank" class="social-icon" title="Resume" aria-label="Resume">
+                    <i class="fas fa-file-download"></i>
+                </a>
+            </div>
+        
+            <div id="hamburger-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact Me</a>
+                <a href="https://www.linkedin.com/in/simran-negi-514868249/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/simran-n17" target="_blank">GitHub</a>
+                <a href="https://leetcode.com/u/Simran_Negi1537/" target="_blank">LeetCode</a>
+                <a href="https://drive.google.com/file/d/14prq_XdwOGZXfKJRIvXHQIDweyvnoHvG/view?usp=sharing" target="_blank">Resume</a>
+            </div>
+        </nav>
+        
+        <section id="home" class="home-section">
+            <div class="profile-picture">
+                <img src="Profile-img.jpeg" alt="Simran Negi's Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="intro-text">
+                <h2>Welcome to My Portfolio</h2>
+                <p style="text-align: justify;">A prefinal year student passionate about technology, ready to explore real-world challenges and contribute to innovative solutions. I combine creativity with technical expertise to build meaningful projects.</p>
+            </div>
+        </section>
+        
+        <section id="about" class="about-section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-box">
+                    <h3>Skills & Expertise</h3>
+                    <div class="skill-name">
+                        <span>AWS</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 65%"></div>
+                    </div>
+        
+                    <div class="skill-name">
+                        <span>Web Development</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 65%"></div>
+                    </div>
+                    
+                    <div class="skill-name">
+                        <span>Docker</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                    
+                    <div class="skill-name">
+                        <span>DevOps</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 70%"></div>
+                    </div>
+        
+                    <div class="skill-name">
+                        <span>MySQL</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+        
+                    <div class="skill-name">
+                        <span>Data Structures</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+        
+                <div class="about-box">
+                    <h3>Education & Experience</h3>
+                    <p><b>Hi, I'm Simran Negi</b></p>
+                    <p style="text-align: justify;">Currently pursuing my Bachelor's in Computer Science and Engineering with a specialization in <b>Cloud Computing & Virtualization Technology</b>(CCVT) from <b>UPES, Dehradun</b>, where I'm maintaining a CGPA of <b>8.13/10.0</b>.</p>
+                    <p style="text-align: justify;">I am passionate about solving real-world problems and have actively participated in various hackathons and coding competitions. My enthusiasm lies in <b>cloud computing</b>, with a focus on <b>AWS, Docker, Kubernetes</b>, and <b>AI-driven automation</b>. I am also exploring AI-driven cloud innovations, <b>serverless computing, and container orchestration</b> to drive digital transformation.</p>
+                    <p style="text-align: justify;">Proficient in programming languages such as <b>Java, C</b> and have hands-on experience in developing scalable and efficient solutions.</p>
+                    <p style="text-align: justify;">During my Social Internship at YOUNITY, I took on the role of <b>Team Lead</b>, where I successfully managed a team, coordinated tasks, and ensured the timely delivery of projects while fostering collaboration and innovation.</p>
+                    <p style="text-align: justify;">Eager to leverage my technical skills and leadership experience to contribute to cutting-edge cloud and AI-driven solutions.</p>
+                    <p style="text-align: justify;">I completed my schooling from <b>RP Public School, Kotdwara, Uttarakhand</b>, where I laid a strong academic foundation. In my 10th grade, I achieved a score of <b>93.2%</b>. Building on this success, I secured <b>87%</b> in my 12th grade, further solidifying my academic prowess and ability to excel in challenging environments. These formative years not only honed my academic skills but also instilled in me a disciplined and goal-oriented approach to learning.</p>
+                </div>
+            </div>
+        
+            <div class="certifications-box">
+                <h3>Certifications</h3>
+                <ul id="certifications-list">
+                    <li>✅ AWS Cloud Quest- Cloud Practitioner</li>
+                    <li>✅ AWS-Academy Graduate- AWS Academy Cloud Security Foundations</li>
+                    <li>✅ Responsive Web Design Certification(freeCodeCamp)</li>
+                    <li>✅ JPMorgan Chase & Co.-Excel Kills Job Simulation(Forage)</li>
+                    <li>✅ AWS Cloud Front(Coursera)</li>
+                    <li class="hidden-certification">✅ AWS-Academy Graduate- AWS Academy Cloud Web Application Builder</li>
+                    <li class="hidden-certification">✅ AWS Cloud Practitioner Essentials</li> 
+                    <li class="hidden-certification">✅ AWS-Academy Graduate- AWS Academy Cloud Computing Architecture</li>
+                    <li class="hidden-certification">✅ Java Featurs(Infosys Springboard)</li>
+                </ul>
+                <button id="view-all-btn" class="btn btn-outline">View All</button>
+                <button id="view-less-btn" class="btn btn-outline" style="display: none;">View Less</button>
+            </div>
+        </section>
+        
+        <section id="projects" class="projects-section">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Docker Projects</h3>
+                    <p>Container orchestration and deployment</p>
+                    <a href="Docker-Projects.html" target="_blank" class="social-icon">view</a>
+                </div>
+                <div class="project-card">
+                    <h3>File Compression Application</h3>
+                    <p>Efficient algorithm for data compression</p>
+                    <a href="https://github.com/simran-n17/TERO" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Agriculture Website</h3>
+                    <p>Digital platform for modern farming</p>
+                    <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>AWS Three Tier Architecture</h3>
+                    <p>Three Tier Architecture Deployment</p>
+                    <a href="https://github.com/simran-n17/AWS--Three-Tier-Architecture-Deployment" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Calculator</h3>
+                    <p>Advanced calculation tool </p>
+                    <a href="https://github.com/simran-n17/CODSOFT/tree/main/Calculator" target="_blank" class="social-icon">git</a>
+                </div>
+                <div class="project-card">
+                    <h3>Weather App</h3>
+                    <p>Real-time weather updates</p>
+                    <a href="https://github.com/simran-n17/Weather-App" target="_blank" class="social-icon">git</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <div class="contact-info" style="flex: 1; margin: 0 auto; text-align: center; max-width: 600px;">
+                <div class="contact-card">
+                    <h2 class="section-title" style="text-align: center;">Get In Touch</h2>
+                    <p>Feel free to reach out to me through email. I'm always open to discussing new projects, opportunities, or just having a chat!</p>
+                    <p>To connect through LinkedIn, scroll above.</p>
+                </div>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=simrannegi1537@gmail.com&su=Portfolio Contact" target="_blank" class="btn btn-icon btn-outline" style="max-width: 200px; margin: 20px auto;">
+                    ✉️ Mail Me</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 My Portfolio | Designed with passion-SIMRAN</p>
+        </footer>
+    </div>
+    <script>
+        // Toggle Hamburger Menu
+        function toggleMenu() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            hamburgerMenu.classList.toggle('active');
+        }
+
+        // Toggle Certifications
+        const viewAllBtn = document.getElementById('view-all-btn');
+        const viewLessBtn = document.getElementById('view-less-btn');
+        const hiddenCertifications = document.querySelectorAll('.hidden-certification');
+    
+        viewAllBtn.addEventListener('click', function() {
+            hiddenCertifications.forEach(cert => {
+                cert.style.display = 'block';
+            });
+            viewAllBtn.style.display = 'none';
+            viewLessBtn.style.display = 'inline-block';
+        });
+    
+        viewLessBtn.addEventListener('click', function() {
+            hiddenCertifications.forEach(cert => {
+                cert.style.display = 'none';
+            });
+            viewLessBtn.style.display = 'none';
+            viewAllBtn.style.display = 'inline-block';
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
