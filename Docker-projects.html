@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simran's Docker Projects</title>
     <style>
-        /* Base Styles */
+        /* Dark Theme Base Styles */
 :root {
     --docker-blue: #2496ed;
     --docker-dark: #1e2638;
-    --docker-light: #f8fafc;
-    --docker-gray: #6c757d;
+    --docker-light: #121212; /* Changed to dark */
+    --docker-gray: #a0a0a0; /* Lighter gray for dark bg */
     --docker-orange: #ff9a3c;
-    --docker-white: #ffffff;
-    --terminal-bg: #1e1e1e;
+    --docker-white: #1e1e1e; /* Darker "white" */
+    --terminal-bg: #0a0a0a;
     --terminal-text: #f0f0f0;
+    --text-primary: #ffffff; /* White text for dark bg */
+    --text-secondary: #cccccc;
+    --card-bg: #252525; /* Dark card background */
 }
 
 * {
@@ -26,7 +29,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--docker-light);
-    color: #333;
+    color: var(--text-primary);
     overflow-x: hidden;
 }
 
@@ -46,6 +49,7 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    background-color: #000000; /* Pure black */
 }
 
 .circle {
@@ -112,9 +116,9 @@ body {
 .docker-header h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--docker-dark);
+    color: var(--text-primary);
     margin-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .docker-header h1 i {
@@ -134,19 +138,19 @@ body {
     align-items: center;
     gap: 8px;
     padding: 12px 25px;
-    background-color: var(--docker-dark);
+    background-color: var(--docker-blue);
     color: white;
     border-radius: 30px;
     font-weight: 500;
     transition: all 0.3s ease;
     text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .back-btn:hover {
-    background-color: var(--docker-blue);
+    background-color: #1a7bb9;
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 /* Section Header */
@@ -157,7 +161,7 @@ body {
 
 .section-header h2 {
     font-size: 2.5rem;
-    color: var(--docker-dark);
+    color: var(--text-primary);
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
@@ -169,7 +173,7 @@ body {
     background: var(--docker-blue);
     margin: 0 auto;
     border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .section-subtitle {
@@ -190,19 +194,20 @@ body {
 }
 
 .about-card {
-    background-color: var(--docker-white);
+    background-color: var(--card-bg);
     border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
+    border: 1px solid #333;
 }
 
 .about-card p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--docker-gray);
+    color: var(--text-secondary);
     margin-bottom: 30px;
 }
 
@@ -218,15 +223,16 @@ body {
     text-align: center;
     flex: 1;
     min-width: 120px;
-    background: rgba(36, 150, 237, 0.1);
+    background: rgba(36, 150, 237, 0.15);
     padding: 20px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    border: 1px solid #333;
 }
 
 .stat-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .stat-value {
@@ -250,7 +256,7 @@ body {
 
 .docker-skills h3 {
     font-size: 1.5rem;
-    color: var(--docker-dark);
+    color: var(--text-primary);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -267,12 +273,13 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--docker-dark);
+    color: var(--text-primary);
     font-size: 1rem;
     font-weight: 500;
-    background: rgba(255, 154, 60, 0.1);
+    background: rgba(255, 154, 60, 0.15);
     padding: 12px 15px;
     border-radius: 6px;
+    border: 1px solid #333;
 }
 
 .docker-skills li i {
@@ -301,18 +308,18 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .github-btn {
-    background-color: var(--docker-dark);
+    background-color: var(--docker-blue);
     color: white;
 }
 
 .github-btn:hover {
-    background-color: #0d2538;
+    background-color: #1a7bb9;
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 .docker-btn {
@@ -323,14 +330,14 @@ body {
 .docker-btn:hover {
     background-color: #1a7bb9;
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 /* Projects Showcase */
 .projects-showcase {
     padding: 60px 0 60px;
     position: relative;
-    background-color: rgba(248, 250, 252, 0.8);
+    background-color: rgba(18, 18, 18, 0.9);
 }
 
 .projects-container {
@@ -360,9 +367,9 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: white;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -390,25 +397,26 @@ body {
 .project-card {
     min-width: 350px;
     scroll-snap-align: start;
-    background-color: white;
+    background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     position: relative;
     cursor: pointer;
+    border: 1px solid #333;
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .project-image {
     height: 200px;
     overflow: hidden;
     position: relative;
-    background-color: #f0f4f8;
+    background-color: #1a1a1a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -420,10 +428,12 @@ body {
     object-fit: contain;
     transition: transform 0.5s ease;
     padding: 20px;
+    filter: brightness(0.9);
 }
 
 .project-card:hover .project-image img {
     transform: scale(1.05);
+    filter: brightness(1);
 }
 
 .project-content {
@@ -432,7 +442,7 @@ body {
 
 .project-content h3 {
     font-size: 1.4rem;
-    color: var(--docker-dark);
+    color: var(--text-primary);
     margin-bottom: 10px;
 }
 
@@ -463,20 +473,21 @@ body {
 }
 
 .github-link {
-    background-color: var(--docker-dark);
+    background-color: var(--docker-blue);
     color: white;
 }
 
 .github-link:hover {
-    background-color: #0d2538;
+    background-color: #1a7bb9;
 }
 
 /* Footer */
 .docker-footer {
     padding: 40px 0;
-    background-color: var(--docker-dark);
+    background-color: #0a0a0a;
     color: white;
     text-align: center;
+    border-top: 1px solid #333;
 }
 
 .footer-content {
@@ -500,6 +511,7 @@ body {
 .docker-footer p {
     margin-bottom: 20px;
     font-size: 1rem;
+    color: var(--docker-gray);
 }
 
 .social-links {
@@ -518,6 +530,7 @@ body {
     color: white;
     font-size: 1.2rem;
     transition: all 0.3s ease;
+    background-color: #333;
 }
 
 .github-icon {
@@ -534,7 +547,7 @@ body {
 
 .social-icon:hover {
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 /* Responsive Styles */
