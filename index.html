@@ -22,12 +22,17 @@
         * {
             box-sizing: border-box;
             transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
             background: linear-gradient(-45deg, #0e0e0e, #1a1a2e, #16213e, #0f3460);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -40,6 +45,67 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Animated Background */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #000000; /* Pure black */
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(36, 150, 237, 0.08);
+    animation: animate 15s linear infinite;
+    bottom: -150px;
+}
+
+.circle.x1 {
+    width: 400px;
+    height: 400px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.circle.x2 {
+    width: 300px;
+    height: 300px;
+    left: 30%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circle.x3 {
+    width: 500px;
+    height: 500px;
+    right: -150px;
+    animation-delay: 4s;
+}
+
+.circle.x4 {
+    width: 350px;
+    height: 350px;
+    right: 30%;
+    animation-delay: 0s;
+    animation-duration: 20s;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+    }
+}
 
         .container {
             max-width: 1200px;
@@ -55,12 +121,14 @@
             height: 12px;
         }
 
+        /* Original Navigation Bar */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
             position: relative;
+            background-color: rgb(243, 216, 216);
         }
 
         #nav-links {
@@ -78,6 +146,7 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+            color: var(--primary);
         }
 
         #hamburger-menu {
@@ -272,9 +341,24 @@
             background-color: rgb(243, 216, 216);
             min-height: 220px;
             position: relative;
-            overflow: hidden;
-            max-height: 400px;
             overflow-y: auto;
+            max-height: 400px;
+        }
+
+        /* Narrow scrollbar */
+        .about-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .about-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .about-box::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        .about-box::-webkit-scrollbar-thumb:hover {
+            background: var(--highlight);
         }
 
         .about-box::before {
@@ -367,60 +451,78 @@
             background-color: var(--highlight);
         }
 
+        /* Updated Projects Section */
         .projects-section {
             background-color: rgb(12, 12, 12);
             border-bottom: 1px solid #eee;
         }
 
-        .project-grid {
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
 
         .project-card {
+            background: rgb(243, 216, 216);
             border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            background-color: rgb(243, 216, 216);
-            border: 1px solid #eee;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+        .project-image {
+            height: 150px;
+            overflow: hidden;
         }
 
-        .project-card h3 {
-            color: var(--primary);
-            margin: 0 0 10px;
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
             font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
 
-        .project-card p {
+        .project-description {
             color: #666;
             font-size: 0.9rem;
-            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            color: var(--highlight);
         }
 
         .contact-section {
@@ -536,17 +638,42 @@
             font-weight: 500;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 136, 145, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 136, 145, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 136, 145, 0); }
+        @media (max-width: 768px) {
+            .home-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-picture {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .certifications-box {
+                width: 100%;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header></header>
+        <!-- Animated Background -->
+        <div class="animated-background">
+            <div class="circle x1"></div>
+            <div class="circle x2"></div>
+            <div class="circle x3"></div>
+            <div class="circle x4"></div>
+        </div>
         
+        <!-- Original Navigation Bar -->
         <nav>
             <div id="hamburger-icon" onclick="toggleMenu()">☰</div>
         
@@ -680,49 +807,92 @@
         
         <section id="projects" class="projects-section">
             <h2 class="section-title">Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Docker Projects</h3>
-                    <p>Container orchestration and deployment</p>
-                    <a href="Docker-projects.html" target="_blank" class="social-icon">view</a>
+            <div class="projects-grid">
+                <div class="project-card" onclick="window.open('Docker-projects.html', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Docker Projects">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Docker Projects</h3>
+                        <p class="project-description">Container orchestration and deployment</p>
+                        <a href="Docker-projects.html" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>File Compression Application</h3>
-                    <p>Efficient algorithm for data compression</p>
-                    <a href="https://github.com/simran-n17/TERO" target="_blank" class="social-icon">git</a>
+                <div class="project-card" onclick="window.open('https://github.com/simran-n17/TERO', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="File Compression Application">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">File Compression Application</h3>
+                        <p class="project-description">Efficient algorithm for data compression</p>
+                        <a href="https://github.com/simran-n17/TERO" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>Agriculture Website</h3>
-                    <p>Digital platform for modern farming</p>
-                    <a href="https://github.com/simran-n17/DOCKER" target="_blank" class="social-icon">git</a>
+                <div class="project-card" onclick="window.open('https://github.com/simran-n17/DOCKER', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Agriculture Website">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Agriculture Website</h3>
+                        <p class="project-description">Digital platform for modern farming</p>
+                        <a href="https://github.com/simran-n17/DOCKER" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>AWS Three Tier Architecture</h3>
-                    <p>Three Tier Architecture Deployment</p>
-                    <a href="https://github.com/simran-n17/AWS--Three-Tier-Architecture-Deployment" target="_blank" class="social-icon">git</a>
+                <div class="project-card" onclick="window.open('https://github.com/simran-n17/AWS--Three-Tier-Architecture-Deployment', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="AWS Three Tier Architecture">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AWS Three Tier Architecture</h3>
+                        <p class="project-description">Three Tier Architecture Deployment</p>
+                        <a href="https://github.com/simran-n17/AWS--Three-Tier-Architecture-Deployment" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>Calculator</h3>
-                    <p>Advanced calculation tool </p>
-                    <a href="https://github.com/simran-n17/CODSOFT/tree/main/Calculator" target="_blank" class="social-icon">git</a>
+                <div class="project-card" onclick="window.open('https://github.com/simran-n17/CODSOFT/tree/main/Calculator', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80" alt="Calculator">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Calculator</h3>
+                        <p class="project-description">Advanced calculation tool</p>
+                        <a href="https://github.com/simran-n17/CODSOFT/tree/main/Calculator" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>Weather App</h3>
-                    <p>Real-time weather updates</p>
-                    <a href="https://github.com/simran-n17/Weather-App" target="_blank" class="social-icon">git</a>
+                <div class="project-card" onclick="window.open('https://github.com/simran-n17/Weather-App', '_blank')">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80" alt="Weather App">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Weather App</h3>
+                        <p class="project-description">Real-time weather updates</p>
+                        <a href="https://github.com/simran-n17/Weather-App" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
         
         <section id="contact" class="contact-section">
-            <div class="contact-info" style="flex: 1; margin: 0 auto; text-align: center; max-width: 600px;">
+            <div class="contact-info">
                 <div class="contact-card">
                     <h2 class="section-title" style="text-align: center;">Get In Touch</h2>
                     <p>Feel free to reach out to me through email. I'm always open to discussing new projects, opportunities, or just having a chat!</p>
                     <p>To connect through LinkedIn, scroll above.</p>
                 </div>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=simrannegi1537@gmail.com&su=Portfolio Contact" target="_blank" class="btn btn-icon btn-outline" style="max-width: 200px; margin: 20px auto;">
-                    ✉️ Mail Me</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=simrannegi1537@gmail.com&su=Portfolio Contact" target="_blank" class="btn btn-icon btn-outline">
+                    ✉️ Mail Me in Gmail
+                </a>
             </div>
         </section>
         
@@ -765,6 +935,17 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // Make entire project cards clickable
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't open link if clicking on the actual link
+                if (!e.target.closest('a')) {
+                    const link = this.querySelector('a').href;
+                    window.open(link, '_blank');
+                }
             });
         });
     </script>
