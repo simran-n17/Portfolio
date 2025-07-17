@@ -128,13 +128,13 @@
             padding: 0 15px;
         }
         
-        /* Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 70px;
-            background: linear-gradient(to bottom, var(--dark), #000000);
+            background: linear-gradient(135deg, #000000 0%, #121212 100%);
             position: relative;
             overflow: hidden;
         }
@@ -146,8 +146,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 45, 117, 0.15) 0%, transparent 30%);
             z-index: 0;
+            animation: float 8s ease-in-out infinite;
         }
         
         .hero-content {
@@ -155,23 +158,37 @@
             align-items: center;
             gap: 40px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             width: 100%;
         }
         
         .hero-text {
             flex: 1;
+            position: relative;
         }
         
         .hero-text h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             line-height: 1.2;
             font-weight: 700;
             background: linear-gradient(to right, var(--light), var(--primary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-text h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
         
         .hero-text h1 span {
@@ -183,20 +200,21 @@
         }
         
         .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             color: var(--gray);
-            max-width: 550px;
+            max-width: 600px;
+            position: relative;
         }
         
         .hero-btns {
             display: flex;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .btn {
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
@@ -204,8 +222,11 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
         
         .btn-primary {
@@ -235,15 +256,15 @@
         
         .social-links {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
         
         .social-links a {
             color: var(--light);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: var(--transition);
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -251,6 +272,19 @@
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: var(--transition);
         }
         
         .social-links a:hover {
@@ -261,29 +295,181 @@
             border-color: var(--primary);
         }
         
+        .social-links a:hover::before {
+            left: 100%;
+        }
+        
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .hero-image-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            box-shadow: 
+                0 0 50px rgba(0, 212, 255, 0.3),
+                0 0 100px rgba(0, 212, 255, 0.2),
+                0 0 150px rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            animation: morph 8s ease-in-out infinite;
+            transition: var(--transition);
+        }
+        
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 0%,
+                rgba(0, 212, 255, 0.1) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%) contrast(110%);
+            transition: var(--transition);
+        }
+        
+        .tech-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .tech-icon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .tech-icon:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .tech-icon:nth-child(3) {
+            bottom: 15%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        .tech-icon:nth-child(4) {
+            bottom: 25%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        .tech-icon:nth-child(5) {
+            top: 50%;
+            left: 5%;
+            animation-delay: 4s;
+        }
+        
+        .tech-icon:nth-child(6) {
+            top: 60%;
+            right: 5%;
+            animation-delay: 5s;
+        }
+        
+        .hero-scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+        
+        .scroll-down-icon {
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--gray);
+            border-radius: 15px;
+            margin-bottom: 10px;
             position: relative;
         }
         
-        .hero-image img {
-            max-width: 80%;
-            max-height: 450px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(255,255,255,0.1);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition);
-            filter: grayscale(0%) contrast(100%);
-            object-fit: cover;
+        .scroll-down-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scrollDown 2s infinite;
         }
         
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
         
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+        
+        @keyframes scrollDown {
+            0% { 
+                transform: translate(-50%, 0);
+                opacity: 0;
+            }
+            50% { 
+                transform: translate(-50%, 15px);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, 30px);
+                opacity: 0;
+            }
+        }
+
+        /* Rest of your existing CSS remains the same */
         /* About Section */
         .about {
             background-color: var(--dark);
@@ -857,9 +1043,9 @@
                 margin-top: 40px;
             }
             
-            .hero-image img {
-                max-width: 70%;
-                transform: perspective(1000px) rotateY(0deg);
+            .hero-image-container {
+                width: 300px;
+                height: 300px;
             }
             
             .skills-container {
@@ -893,7 +1079,7 @@
             }
             
             .hero-text h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
@@ -915,16 +1101,16 @@
             }
             
             .hero-text h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .hero-text p {
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
             
             .btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
+                padding: 12px 24px;
+                font-size: 0.9rem;
             }
             
             .section-title h2 {
@@ -945,6 +1131,11 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero-image-container {
+                width: 250px;
+                height: 250px;
             }
         }
     </style>
@@ -968,7 +1159,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -990,8 +1181,22 @@
                     </div>
                 </div>
                 <div class="hero-image fade-in delay-1">
-                    <img src="images/ProfileImg1.jpeg" alt="Simran Negi">
+                    <div class="hero-image-container">
+                        <img src="images/ProfileImg1.jpeg" alt="Simran Negi">
+                    </div>
+                    <div class="tech-icons">
+                        <div class="tech-icon"><i class="fab fa-aws"></i></div>
+                        <div class="tech-icon"><i class="fab fa-docker"></i></div>
+                        <div class="tech-icon"><i class="fab fa-linux"></i></div>
+                        <div class="tech-icon"><i class="fab fa-java"></i></div>
+                        <div class="tech-icon"><i class="fab fa-python"></i></div>
+                        <div class="tech-icon"><i class="fab fa-git-alt"></i></div>
+                    </div>
                 </div>
+            </div>
+            <div class="hero-scroll-down">
+                <div class="scroll-down-icon"></div>
+                <span>Scroll Down</span>
             </div>
         </div>
     </section>
@@ -1106,6 +1311,17 @@
                 <h2>My <span>Projects</span></h2>
             </div>
             <div class="projects-grid">
+
+                <div class="project-card fade-in delay-1">
+                    <img src="images/Disaster Recovery.webp" alt="Java TCP Chat App using CLI">
+                    <div class="project-overlay">
+                        <h3>Disaster Recovery on AWS</h3>
+                        <p>utomated disaster recovery solution to back up EC2 as AMI and restore full web-service availability via CloudFormation.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/simran-n17/Disaster-Recovery-AWS"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="project-card fade-in delay-1">
                     <img src="images/TCP-chat.png" alt="Java TCP Chat App using CLI">
